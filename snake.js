@@ -1,7 +1,7 @@
-let snakeSize = 30
+let snakeSize = 35
 let xPos
 let yPos
-let xSpeed = snakeSize
+let xSpeed = -snakeSize
 let ySpeed = snakeSize
 let direction = "x"
 let directionRandom
@@ -33,7 +33,7 @@ function setup() {
     xPos = snakeSize * 10//snakeSize * Math.floor(Math.random() * windowWidth/snakeSize);
     yPos = snakeSize * 10 //snakeSize * Math.floor(Math.random() * windowHeight/snakeSize);
     appleMove()
-    textSize(30)
+    textSize(snakeSize)
     textAlign(CENTER)
   }
   
@@ -105,10 +105,7 @@ function setup() {
       y: yPos, 
       dir: direction
     })
-   
     //console.log(snakeWay)
-
-  
 
 
     if (frameCount>snakeLength){
@@ -119,9 +116,25 @@ function setup() {
         push()
         fill(0)
         translate(snakeLastPositions.x,snakeLastPositions.y)
+
+        //roration
+        if(snakeLastPositions.dir == "y" && ySpeed < 0){
+          translate(snakeSize,0)
+          rotate(PI/2)
+        }
+        if(snakeLastPositions.dir == "y" && ySpeed > 0){
+          translate(0,snakeSize)
+          rotate(PI/2 * 3)
+        }
+        if(snakeLastPositions.dir == "x" && xSpeed > 0){
+          translate(snakeSize,snakeSize)
+          rotate(PI/2 * 2)
+        }
+
         rect(0, 0, snakeSize,snakeSize)
         fill(255)
-        text(textSnake[textSnakeNum], 0 + snakeSize/2, 0 + snakeSize/1.2)
+        text(textSnake[textSnakeNum], 0 + snakeSize/2, 0 + snakeSize/1.15)
+
         if (i%textSnake.length == 0){
           textSnakeNum =0 
         }else{
