@@ -28,7 +28,7 @@ function appleMove(){
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    frameRate(10)
+    frameRate(8)
     textFont(myFont)
     xPos = snakeSize * 10//snakeSize * Math.floor(Math.random() * windowWidth/snakeSize);
     yPos = snakeSize * 10 //snakeSize * Math.floor(Math.random() * windowHeight/snakeSize);
@@ -89,15 +89,17 @@ function setup() {
         snakeLastPositions = snakeWay[snakeWay.length-i]
         noFill()
         stroke(0)
-        rect(snakeLastPositions.x, snakeLastPositions.y, snakeSize,snakeSize)
+        push()
+        translate(snakeLastPositions.x,snakeLastPositions.y)
+        rect(0, 0, snakeSize,snakeSize)
         fill(0)
-        
-        text(textSnake[textSnakeNum], snakeLastPositions.x + snakeSize/2, snakeLastPositions.y + snakeSize/1.2)
+        text(textSnake[textSnakeNum], 0 + snakeSize/2, 0 + snakeSize/1.2)
         if (i%textSnake.length == 0){
           textSnakeNum =0 
         }else{
            textSnakeNum += 1 
         }
+        pop()
 
         //COLLISION???
         if (i>2 && snakeWay[snakeWay.length-1].x==snakeLastPositions.x && snakeWay[snakeWay.length-1].y==snakeLastPositions.y){
