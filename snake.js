@@ -96,7 +96,7 @@ function setup() {
     if (yPos > windowHeight - snakeSize/2){
       yPos = 0
     } 
-    if (yPos+snakeSize < 0){
+    if (yPos < 0){
       yPos = Math.floor(windowHeight/snakeSize) * snakeSize
     } 
 
@@ -134,7 +134,7 @@ function setup() {
 
         rect(0, 0, snakeSize,snakeSize)
         fill(255)
-        text(textSnake[textSnakeNum], 0 + snakeSize/2, 0 + snakeSize/1.15)
+        text(textSnake[textSnakeNum], 0 + snakeSize/2, 0 + snakeSize/1.14)
 
         if (i%textSnake.length == 0){
           textSnakeNum =0 
