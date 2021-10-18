@@ -1,4 +1,4 @@
-let snakeSize = 40
+let snakeSize = 50
 let xPos
 let yPos
 let xSpeed = -snakeSize
@@ -132,7 +132,7 @@ function setup() {
           rotate(PI/2 * 2)
         }
         
-        if (i==1){
+        if (i==snakeLength){
           fill(255)
           stroke(255,0,0)
           rect(0, 0, snakeSize,snakeSize)
