@@ -17,7 +17,7 @@ let myFont
 function preload(){
   myFont = loadFont('Capital-SemiBold.otf')
 }
-let textSnake = ["S","U","P","E","R","O","+"]
+let textSnake = ["S","N","A","K","E"]
 let textSnakeNum
 
 function appleMove(){
