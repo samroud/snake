@@ -132,13 +132,20 @@ function setup() {
           rotate(PI/2 * 2)
         }
         
-        if (i==snakeLength){
+        if (i==snakeLength && i!=1){
           fill(255)
           stroke(255,0,0)
           rect(0, 0, snakeSize,snakeSize)
           noStroke()
           fill(255,0,0)
-        } else{
+        } else if (i==1){
+          fill(0)
+          stroke(0)
+          rect(0, 0, snakeSize,snakeSize)
+          noStroke()
+          fill(255)
+        }
+         else{
           fill(255)
           stroke(0)
           rect(0, 0, snakeSize,snakeSize)
