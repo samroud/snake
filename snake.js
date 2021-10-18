@@ -13,6 +13,13 @@ let appleYPos
 let snakeLength = 1
 let widthCanvas = 1000
 
+let myFont
+function preload(){
+  myFont = loadFont('Capital-SemiBold.otf')
+}
+let textSnake = ["S","U","P","E","R","O","+"]
+let textSnakeNum
+
 function appleMove(){
   appleXPos = snakeSize * Math.floor(Math.random() * windowWidth/snakeSize + 1) - snakeSize/2;
   appleYPos = snakeSize * Math.floor(Math.random() * windowHeight/snakeSize + 1) - snakeSize/2;
@@ -22,6 +29,7 @@ function appleMove(){
 function setup() {
     createCanvas(windowWidth, windowHeight);
     frameRate(10)
+    textFont(myFont)
     xPos = snakeSize * 10//snakeSize * Math.floor(Math.random() * windowWidth/snakeSize);
     yPos = snakeSize * 10 //snakeSize * Math.floor(Math.random() * windowHeight/snakeSize);
     appleMove()
@@ -29,83 +37,6 @@ function setup() {
     textAlign(CENTER)
   }
   
-  function mouseClicked() {
-    directionRandom = random()
-    xDirection = mouseX-xPos
-    yDirection = mouseY-yPos
-    console.log(xDirection+" / "+yDirection)
-
-    //MOVE WITH MOUSE
-    //En bas à droite
-    if (xDirection > 0 && yDirection > 0){
-      if (xDirection < yDirection){
-        direction = "y"
-      } else{
-        direction = "x"
-      }
-      if (xSpeed < 0 ){
-        xSpeed=-xSpeed
-      }
-      if (ySpeed < 0 ){
-        ySpeed=-ySpeed
-      }
-      console.log("en bas à droite")
-    }
-    //En bas à gauche
-    if (xDirection < 0 && yDirection > 0){
-      yDirection = -yDirection
-      if (xDirection > yDirection){
-        direction = "y"
-      } else{
-        direction = "x"
-      }
-      if (xSpeed > 0 ){
-        xSpeed=-xSpeed
-      }
-      if (ySpeed < 0 ){
-        ySpeed=-ySpeed
-      }
-      yDirection = -yDirection
-      console.log("en bas à gauche")
-    }
-    //En haut à droite
-    if (xDirection > 0 && yDirection < 0){
-      xDirection = -xDirection
-      if (xDirection > yDirection){
-        direction = "y"
-      } else{
-        direction = "x"
-      }
-      if (xSpeed < 0 ){
-        xSpeed=-xSpeed
-      }
-      if (ySpeed > 0 ){
-        ySpeed=-ySpeed
-      }
-      xDirection = -xDirection
-      console.log("en haut à droite")
-    }
-     //En haut à gauche
-     if (xDirection < 0 && yDirection < 0){
-      if (xDirection > yDirection){
-        direction = "y"
-      } else{
-        direction = "x"
-      }
-      if (xSpeed > 0 ){
-        xSpeed=-xSpeed
-      }
-      if (ySpeed > 0 ){
-        ySpeed=-ySpeed
-      }
-      console.log("en haut à gauche")
-      
-    }
-    //console.log(direction)
-
-  }
-  
-
   function draw() {
     background(255);
     
@@ -125,8 +56,6 @@ function setup() {
       line(0,0,0,windowHeight)
       pop()
     }
-
-    fill(0)
 
 
     //SNAKE WALL
@@ -150,17 +79,33 @@ function setup() {
     })
     //console.log(snakeWay)
 
+  
+
+
     if (frameCount>snakeLength){
+      textSnakeNum = 0 
+
       for (let i=1;i<snakeLength+1;i++){
         snakeLastPositions = snakeWay[snakeWay.length-i]
+        noFill()
+        stroke(0)
         rect(snakeLastPositions.x, snakeLastPositions.y, snakeSize,snakeSize)
+        fill(0)
+        
+        text(textSnake[textSnakeNum], snakeLastPositions.x + snakeSize/2, snakeLastPositions.y + snakeSize/1.2)
+        if (i%textSnake.length == 0){
+          textSnakeNum =0 
+        }else{
+           textSnakeNum += 1 
+        }
+
         //COLLISION???
         if (i>2 && snakeWay[snakeWay.length-1].x==snakeLastPositions.x && snakeWay[snakeWay.length-1].y==snakeLastPositions.y){
-          console.log("COLLISTION!!!")
-          text('GAME OVER', windowWidth/2, 150)
-          xSpeed = 0
-          ySpeed = 0
-          noLoop()
+          // console.log("COLLISTION!!!")
+          // text('GAME OVER', windowWidth/2, 150)
+          // xSpeed = 0
+          // ySpeed = 0
+          // noLoop()
         }
 
       }
