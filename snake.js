@@ -131,10 +131,21 @@ function setup() {
           translate(snakeSize,snakeSize)
           rotate(PI/2 * 2)
         }
-        fill(255)
-        stroke(0)
-        rect(0, 0, snakeSize,snakeSize)
-        fill(0)
+        
+        if (i==1){
+          fill(255)
+          stroke(255,0,0)
+          rect(0, 0, snakeSize,snakeSize)
+          noStroke()
+          fill(255,0,0)
+        } else{
+          fill(255)
+          stroke(0)
+          rect(0, 0, snakeSize,snakeSize)
+          noStroke()
+          fill(0)
+        }
+  
         text(textSnake[textSnakeNum], 0 + snakeSize/2, 0 + snakeSize/1.14)
 
         if (i%textSnake.length == 0){
@@ -170,7 +181,7 @@ function setup() {
 
 
     //APPLE
-
+    noStroke()
     fill(255,0,0)
     rect(appleXPos - snakeSize/2,appleYPos - snakeSize/2,snakeSize,snakeSize)
     fill(255)
