@@ -25,7 +25,7 @@ function setup() {
     xPos = snakeSize * 10//snakeSize * Math.floor(Math.random() * windowWidth/snakeSize);
     yPos = snakeSize * 10 //snakeSize * Math.floor(Math.random() * windowHeight/snakeSize);
     appleMove()
-    textSize(60)
+    textSize(30)
     textAlign(CENTER)
   }
   
@@ -157,7 +157,7 @@ function setup() {
         //COLLISION???
         if (i>2 && snakeWay[snakeWay.length-1].x==snakeLastPositions.x && snakeWay[snakeWay.length-1].y==snakeLastPositions.y){
           console.log("COLLISTION!!!")
-          text('GAME OVER', windowWidth/2, 130)
+          text('GAME OVER', windowWidth/2, 150)
           xSpeed = 0
           ySpeed = 0
           noLoop()
@@ -171,6 +171,8 @@ function setup() {
         console.log("Miam Miam")
       }      
     }
+    text(snakeLength, windowWidth/2, 50)
+
 
 
     //APPLE
