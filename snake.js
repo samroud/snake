@@ -1,4 +1,4 @@
-let snakeSize = 35
+let snakeSize = 40
 let xPos
 let yPos
 let xSpeed = -snakeSize
@@ -17,7 +17,7 @@ let myFont
 function preload(){
   myFont = loadFont('Capital-SemiBold.otf')
 }
-let textSnake = ["S","N","A","K","E"]
+let textSnake = ["S","N","A","K","E","/"]
 let textSnakeNum
 let textSnakeNumMiam = 1
 
@@ -39,24 +39,24 @@ function setup() {
   }
   
   function draw() {
-    background(255);
-    
+    background(255)
+    noStroke()
     //GRID
-    stroke(0,0,0,30)
-    let colNum = windowWidth/snakeSize
-    let rowNum = windowHeight/snakeSize
-    for(let row=0;row<rowNum;row++){
-      push()
-      translate(0,row*snakeSize)
-      line(0,0,windowWidth,0)
-      pop()
-    }
-    for(let col=0;col<colNum;col++){
-      push()
-      translate(col*snakeSize,0)
-      line(0,0,0,windowHeight)
-      pop()
-    }
+    // stroke(0,0,0,30)
+    // let colNum = windowWidth/snakeSize
+    // let rowNum = windowHeight/snakeSize
+    // for(let row=0;row<rowNum;row++){
+    //   push()
+    //   translate(0,row*snakeSize)
+    //   line(0,0,windowWidth,0)
+    //   pop()
+    // }
+    // for(let col=0;col<colNum;col++){
+    //   push()
+    //   translate(col*snakeSize,0)
+    //   line(0,0,0,windowHeight)
+    //   pop()
+    // }
 
     //MOVE WITH KEYBOARD
     if (keyIsDown(LEFT_ARROW)) {
@@ -87,13 +87,13 @@ function setup() {
 
 
     //SNAKE WALL
-    if (xPos > windowWidth){
+    if (xPos > windowWidth - snakeSize/2){
       xPos =0
     } 
     if (xPos < 0){
       xPos = Math.floor(windowWidth/snakeSize) * snakeSize
     } 
-    if (yPos > windowHeight - snakeSize){
+    if (yPos > windowHeight - snakeSize/2){
       yPos = 0
     } 
     if (yPos+snakeSize < 0){
@@ -164,7 +164,7 @@ function setup() {
         }
       }      
     }
-    text(snakeLength, windowWidth/2, 50)
+    //text(snakeLength, windowWidth/2, 50)
 
 
 
@@ -173,7 +173,7 @@ function setup() {
     fill(255,0,0)
     rect(appleXPos - snakeSize/2,appleYPos - snakeSize/2,snakeSize,snakeSize)
     fill(255)
-    text(textSnake[textSnakeNumMiam], appleXPos, appleYPos + snakeSize/2.9)
+    text(textSnake[textSnakeNumMiam], appleXPos, appleYPos + snakeSize/2.7)
 
      
 
