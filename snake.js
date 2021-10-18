@@ -22,8 +22,8 @@ let textSnakeNum
 let textSnakeNumMiam = 1
 
 function appleMove(){
-  appleXPos = snakeSize * Math.floor(Math.random() * windowWidth/snakeSize + 1) - snakeSize/2;
-  appleYPos = snakeSize * Math.floor(Math.random() * windowHeight/snakeSize + 1) - snakeSize/2;
+  appleXPos = snakeSize * Math.floor(Math.random() * (windowWidth-snakeSize) / snakeSize) + snakeSize/2;
+  appleYPos = snakeSize * Math.floor(Math.random() * (windowHeight-snakeSize) / snakeSize) + snakeSize/2;
 }
 
 
