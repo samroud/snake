@@ -3,13 +3,13 @@ let xPos
 let yPos
 let xSpeed = snakeSize
 let ySpeed = snakeSize
-let direction
+let direction = "x"
 let directionRandom
 let xDirection
 let yDirection
-let snakeWay = []
 let appleXPos
 let appleYPos
+let snakeWay = []
 let snakeLength = 1
 let widthCanvas = 1000
 
@@ -57,6 +57,33 @@ function setup() {
       pop()
     }
 
+    //MOVE WITH KEYBOARD
+    if (keyIsDown(LEFT_ARROW)) {
+      direction = "x"
+      if (xSpeed > 0 ){
+        xSpeed=-xSpeed
+      }
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+      direction = "x"
+      if (xSpeed < 0 ){
+        xSpeed=-xSpeed
+      }
+    }
+    if (keyIsDown(UP_ARROW)) {
+      direction = "y"
+      if (ySpeed > 0 ){
+        ySpeed=-ySpeed
+      }
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+      direction = "y"
+      if (ySpeed < 0 ){
+        ySpeed=-ySpeed
+      }
+    }
+
+
 
     //SNAKE WALL
     if (xPos > windowWidth){
@@ -65,7 +92,7 @@ function setup() {
     if (xPos < 0){
       xPos = Math.floor(windowWidth/snakeSize) * snakeSize
     } 
-    if (yPos > windowHeight - snakeSize/4){
+    if (yPos > windowHeight - snakeSize){
       yPos = 0
     } 
     if (yPos+snakeSize < 0){
@@ -76,7 +103,9 @@ function setup() {
     snakeWay.push({
       x: xPos, 
       y: yPos, 
+      dir: direction
     })
+   
     //console.log(snakeWay)
 
   
@@ -87,12 +116,11 @@ function setup() {
 
       for (let i=1;i<snakeLength+1;i++){
         snakeLastPositions = snakeWay[snakeWay.length-i]
-        noFill()
-        stroke(0)
         push()
+        fill(0)
         translate(snakeLastPositions.x,snakeLastPositions.y)
         rect(0, 0, snakeSize,snakeSize)
-        fill(0)
+        fill(255)
         text(textSnake[textSnakeNum], 0 + snakeSize/2, 0 + snakeSize/1.2)
         if (i%textSnake.length == 0){
           textSnakeNum =0 
@@ -126,32 +154,7 @@ function setup() {
     fill(255,0,0)
     ellipse(appleXPos,appleYPos,snakeSize,snakeSize)
 
-     //MOVE WITH KEYBOARD
-     if (keyIsDown(LEFT_ARROW)) {
-      direction = "x"
-      if (xSpeed > 0 ){
-        xSpeed=-xSpeed
-      }
-    }
-    if (keyIsDown(RIGHT_ARROW)) {
-      direction = "x"
-      if (xSpeed < 0 ){
-        xSpeed=-xSpeed
-      }
-    }
-    if (keyIsDown(UP_ARROW)) {
-      direction = "y"
-      if (ySpeed > 0 ){
-        ySpeed=-ySpeed
-      }
-    }
-    if (keyIsDown(DOWN_ARROW)) {
-      direction = "y"
-      if (ySpeed < 0 ){
-        ySpeed=-ySpeed
-      }
-    }
-
+     
 
     //SNAKLE MOVE
     if (direction == "x"){
