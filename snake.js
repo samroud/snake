@@ -19,6 +19,7 @@ function preload(){
 }
 let textSnake = ["S","N","A","K","E"]
 let textSnakeNum
+let textSnakeNumMiam = 1
 
 function appleMove(){
   appleXPos = snakeSize * Math.floor(Math.random() * windowWidth/snakeSize + 1) - snakeSize/2;
@@ -157,6 +158,10 @@ function setup() {
         snakeLength +=1
         appleMove()
         console.log("Miam Miam")
+        textSnakeNumMiam+=1
+        if(textSnakeNumMiam == textSnake.length){
+          textSnakeNumMiam=0
+        }
       }      
     }
     text(snakeLength, windowWidth/2, 50)
@@ -164,8 +169,11 @@ function setup() {
 
 
     //APPLE
+
     fill(255,0,0)
-    ellipse(appleXPos,appleYPos,snakeSize,snakeSize)
+    rect(appleXPos - snakeSize/2,appleYPos - snakeSize/2,snakeSize,snakeSize)
+    fill(255)
+    text(textSnake[textSnakeNumMiam], appleXPos, appleYPos + snakeSize/2.9)
 
      
 
